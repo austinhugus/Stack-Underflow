@@ -3,7 +3,8 @@ import Question from "../Models/Question.js";
 
 
 const _mainApi = axios.create({
-    baseURL: ""
+    baseURL: "localhost:3000/api/questions",
+    timeout: 3000
 })
 
 
