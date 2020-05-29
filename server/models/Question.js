@@ -7,7 +7,8 @@ const Question = new Schema(
 
     title: { type: String, required: true },
 
-    body: { type: String, required: true }
+    body: { type: String, required: true },
+
   },
   { timestamps: true, toJSON: { virtuals: true } }
 );

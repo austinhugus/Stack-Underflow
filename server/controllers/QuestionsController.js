@@ -1,6 +1,7 @@
 import express from "express";
 import BaseController from "../utils/BaseController";
 import { questionsService } from "../services/QuestionsService";
+import { answersService } from "../services/AnswersService";
 
 export class QuestionsController extends BaseController {
   constructor() {
@@ -8,6 +9,7 @@ export class QuestionsController extends BaseController {
     this.router
     .get("", this.getAll)
     .get("/:id", this.getById)
+    .get("/:id/answers", this.getAnswersByQuestionId)
     .post("", this.create)
     .put("/:id", this.edit)
     .delete("/:id", this.delete)
@@ -29,6 +31,16 @@ export class QuestionsController extends BaseController {
       next(error);
     }
   }
+
+  async getAnswersByQuestionId(req, res, next){
+    try{
+      let data = await answersService.find({questionId: req.params.id})
+      return res.send(data)
+    } catch(error){
+      next(error)
+    }
+  }
+
   async create(req, res, next) {
     try {
       let data = await questionsService.create(req.body)
