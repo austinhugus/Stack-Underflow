@@ -3,7 +3,8 @@ import Comment from "../Models/Comment.js";
 
 
 const _mainApi = axios.create({
-    baseURL: ""
+    baseURL: "localhost:3000/api/comments",
+    timeout: 3000
 })
 
 
