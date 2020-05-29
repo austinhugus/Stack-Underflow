@@ -19,8 +19,14 @@ export default class CommentsController {
         commentsService.getComments();
     }
 
+    toggleForm(){
+        document.getElementById("formForAnswer").classList.toggle("hidden")
+    }
+
     addComment(event) {
         event.preventDefault();
+        document.getElementById("formForAnswer").classList.toggle("hidden")
+
         let formData = event.target
         let newComment = {
             title: formData.title.value,

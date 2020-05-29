@@ -23,10 +23,11 @@ export default class QuestionsController {
         event.preventDefault();
         let formData = event.target
         let newQuestion = {
-            title: formData.title.value,
-            description: formData.description.value,
+            question: formData.question.value,
             user: formData.user.value
         }
+        console.log(newQuestion)
+
         questionsService.addQuestion(newQuestion)
         formData.reset()
     }
