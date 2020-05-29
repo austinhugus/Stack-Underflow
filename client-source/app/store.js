@@ -1,9 +1,17 @@
 import Value from "./Models/Value.js";
+import Question from "./Models/Question.js";
+import Comment from "./Models/Comment.js";
+
 
 let _state = {
   activeValue: new Value({ title: "Value" }),
   /** @type {Value[]} */
-  values: []
+  values: [],
+  /** @type {Question[]} */
+  questions: [],
+  /** @type {Comment[]} */
+
+  comments: [],
 };
 
 /** Collection of listeners to be called based on keyed state changes
@@ -11,7 +19,9 @@ let _state = {
  */
 let _listeners = {
   activeValue: [],
-  values: []
+  questions: [],
+  values: [],
+  comments: []
 };
 
 //NOTE You should not need to change the code from this point down
