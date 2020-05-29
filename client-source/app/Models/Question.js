@@ -1,14 +1,17 @@
 export default class Question {
     constructor(data) {
+
         this.question = data.question
         this.user = data.user
         this.upvotes = data.upvotes || 0
         this.downvotes = data.downvotes || 0
         this.answers = []
+
     }
 
     get Template() {
         return /*html*/`
+
         <div class="row my-3 border-bottom border-primary" id="QUESTION-TEMPLATE">
             <div class="col-12">
                 <div class="row" id="buttons-and-question">
@@ -66,6 +69,7 @@ export default class Question {
                 </div>
             </div>
         </div>
+
         `
     }
 }

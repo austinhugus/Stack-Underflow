@@ -7,6 +7,7 @@ export default class Comment {
 
     get Template() {
         return /*html*/`
+
         <div class="offset-1 col-10">
         <div class="row">
             <div class="col-1 ml-1" id="answerVoteButtons">
@@ -39,6 +40,7 @@ export default class Comment {
             </div>
         </div>
     </div>
+
         `
     }
 }

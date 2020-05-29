@@ -27,6 +27,7 @@ export default class QuestionsController {
             user: formData.user.value
         }
         console.log(newQuestion)
+
         questionsService.addQuestion(newQuestion)
         formData.reset()
     }

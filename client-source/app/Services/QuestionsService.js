@@ -19,12 +19,15 @@ class QuestionsService {
             .then(res => {
                 let questions = res.data.map(q => new Question(q))
                 store.commit("questions", questions)
+
             })
             .catch(err => console.error(err))
     }
 
+
     addQuestion(newQuestion) {
         _mainApi.post("questions", newQuestion)
+
             .then(res => {
                 this.getQuestions()
             })
@@ -33,7 +36,9 @@ class QuestionsService {
 
     upVote(id) {
         let question = store.State.questions.find(q => q.id == id)
+
         let update = question.upvotes += 1
+
         _mainApi.put(question, update)
             .then(res => {
                 this.getQuestions()
@@ -43,7 +48,9 @@ class QuestionsService {
 
     downVote(id) {
         let question = store.State.questions.find(q => q.id == id)
+
         let update = question.downvotes -= 1
+
         _mainApi.put(question, update)
             .then(res => {
                 this.getQuestions()
