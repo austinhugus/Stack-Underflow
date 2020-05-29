@@ -4,11 +4,16 @@ const ObjectId = mongoose.Types.ObjectId
 
 const Answer = new Schema(
   {
-    creator: { type: String, required: true },
+    user: { type: String, required: true },
 
     body: { type: String, required: true },
 
-    questionId: {type: ObjectId, ref: "Question", required: true }
+    questionId: { type: ObjectId, ref: "Question", required: true },
+
+    upvotes: { type: Number, required: true },
+
+    downvotes: { type: Number, required: true },
+
   },
   { timestamps: true, toJSON: { virtuals: true } }
 );

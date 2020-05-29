@@ -7,13 +7,13 @@ export class QuestionsController extends BaseController {
   constructor() {
     super("api/questions");
     this.router
-    .get("", this.getAll)
-    .get("/:id", this.getById)
-    .get("/:id/answers", this.getAnswersByQuestionId)
-    .post("", this.create)
-    .put("/:id", this.edit)
-    .delete("/:id", this.delete)
-    
+      .get("", this.getAll)
+      .get("/:id", this.getById)
+      .get("/:id/answers", this.getAnswersByQuestionId)
+      .post("", this.create)
+      .put("/:id", this.edit)
+      .delete("/:id", this.delete)
+
   }
   async getAll(req, res, next) {
     try {
@@ -27,16 +27,16 @@ export class QuestionsController extends BaseController {
     try {
       let data = await questionsService.findById(req.params.id)
       return res.send(data)
-    } catch(error) {
+    } catch (error) {
       next(error);
     }
   }
 
-  async getAnswersByQuestionId(req, res, next){
-    try{
-      let data = await answersService.find({questionId: req.params.id})
+  async getAnswersByQuestionId(req, res, next) {
+    try {
+      let data = await answersService.find({ questionId: req.params.id })
       return res.send(data)
-    } catch(error){
+    } catch (error) {
       next(error)
     }
   }
@@ -50,17 +50,17 @@ export class QuestionsController extends BaseController {
     }
   }
   async edit(req, res, next) {
-      try{
-        req.body.id = req.params.id
-        let data = await questionsService.edit(req.body)
-        return res.send(data)
-      } catch (error) {
-        next(error)
-      }
-      }
+    try {
+      req.body.id = req.params.id
+      let data = await questionsService.edit(req.body)
+      return res.send(data)
+    } catch (error) {
+      next(error)
+    }
+  }
 
   async delete(req, res, next) {
-    try{
+    try {
       await questionsService.delete(req.params.id)
       return res.send("Deleted")
     } catch (error) {
