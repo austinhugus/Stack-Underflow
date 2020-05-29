@@ -2,8 +2,9 @@ import store from "../store.js";
 import Question from "../Models/Question.js";
 
 
+// @ts-ignore
 const _mainApi = axios.create({
-    baseURL: "localhost:3000/api/questions",
+    baseURL: "//localhost:3000/api",
     timeout: 3000
 })
 

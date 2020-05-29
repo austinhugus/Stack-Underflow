@@ -2,8 +2,9 @@ import store from "../store.js";
 import Comment from "../Models/Comment.js";
 
 
-const _mainApi = axios.create({
-    baseURL: "localhost:3000/api/comments",
+// @ts-ignore
+const _questionApi = axios.create({
+    baseURL: "//localhost:3000/api",
     timeout: 3000
 })
 
@@ -24,8 +25,8 @@ class CommentsService {
             .catch(err => console.error(err))
     }
 
-    addComment() {
-        _mainApi.post("comments", newHouse)
+    addComment(newComment) {
+        _questionApi.post("comments", newComment)
             .then(res => {
                 this.getComments()
             })

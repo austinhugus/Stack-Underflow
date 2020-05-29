@@ -4,11 +4,11 @@ const ObjectId = mongoose.Types.ObjectId
 
 const Answer = new Schema(
   {
-    creator: { type: String, required: true },
+    user: { type: String, required: true },
 
     body: { type: String, required: true },
 
-    questionId: {type: ObjectId, ref: "Question", required: true }
+    // questionId: { type: ObjectId, ref: "Question", required: true }
   },
   { timestamps: true, toJSON: { virtuals: true } }
 );

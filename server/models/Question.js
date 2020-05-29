@@ -3,11 +3,10 @@ const Schema = mongoose.Schema;
 
 const Question = new Schema(
   {
-    creator: { type: String, required: true },
+    user: { type: String, required: true },
 
-    title: { type: String, required: true },
 
-    body: { type: String, required: true },
+    question: { type: String, required: true },
 
   },
   { timestamps: true, toJSON: { virtuals: true } }

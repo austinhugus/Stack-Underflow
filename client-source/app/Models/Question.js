@@ -5,7 +5,9 @@ export default class Question {
         this.user = data.user
         this.upvotes = data.upvotes || 0
         this.downvotes = data.downvotes || 0
-        this.answers = []
+        this.answer = []
+        console.log(data)
+        this.id = data._id
 
     }
 
@@ -19,14 +21,14 @@ export default class Question {
                         <div class="row">
                             <div class="col">
                                 <h3><i class="text-success fas fa-chevron-up pointer"
-                                        onclick="app.questionsController.upVote()"></i> <span class="text-success"
+                                        onclick="app.questionsController.upVote('${this.id}')"></i> <span class="text-success"
                                         id="questionUpvotes">${this.upvotes}</span></h3>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col">
                                 <h3><i class="text-danger fas fa-chevron-down pointer"
-                                        onclick="app.questionsController.downVote()"></i> <span class="text-danger"
+                                        onclick="app.questionsController.downVote('${this.id}')"></i> <span class="text-danger"
                                         id="questionDownvotes">${this.downvotes}</span></h3>
                             </div>
                         </div>
@@ -46,8 +48,8 @@ export default class Question {
                 </div>
                 <div class="row mb-3">
                     <div class="offset-1 col-10">
-                        <button class="btn btn-outline-info" onclick="app.answersController.answer()">Answer</button>
-                        <span class="ml-3 pointer" onclick="app.answersController.showAnswers()"><u>Show
+                        <button class="btn btn-outline-info" onclick="app.commentsController.toggleForm()">Answer</button>
+                        <span class="ml-3 pointer" onclick="app.commentsController.showAnswers()"><u>Show
                                 Answers</u></span>
                     </div>
                 </div>
@@ -59,12 +61,13 @@ export default class Question {
                             <input class="form-control" id="user" placeholder="Name"></input>
                         </div>
                         <div class="form-group">
-                            <label for="question">Question:</label>
-                            <input class="form-control" id="question" placeholder="Ask A Question!"></input>
+                            <label for="comment">Question:</label>
+                            <input class="form-control" id="description" placeholder="Answer The Question!"></input>
                         </div>
                         <button class="btn btn-outline-warning" type="submit">Answer</button>
                     </form>
-                <div class="row mb-3" id="ANSWER-TEMPLATE">
+                    </div>
+                    <div class="row mb-3" id="comments">
                         
                 </div>
             </div>
