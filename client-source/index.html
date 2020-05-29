@@ -23,7 +23,7 @@
         <div class="row border-bottom border-primary pb-3" id="askQuestion">
             <div class="col-12 col-md-6 mt-2">
                 <h5 class="border-bottom border-primary pb-2">Ask A Question:</h5>
-                <form onsubmit="app.questionsController.ask()">
+                <form onsubmit="app.questionsController.addQuestion(event)">
                     <div class="form-group">
                         <label for="user">Your Name:</label>
                         <input class="form-control" id="user" placeholder="Name"></input>
@@ -32,7 +32,7 @@
                         <label for="question">Question:</label>
                         <input class="form-control" id="question" placeholder="Ask A Question!"></input>
                     </div>
-                    <button class="btn btn-outline-success">ASK</button>
+                    <button class="btn btn-outline-success" type="submit">ASK</button>
                 </form>
             </div>
         </div>
@@ -43,78 +43,61 @@
                         id="sortNewest" class="pointer" onclick="SORTBYNEWEST"><u>Newest</u></span></h5>
             </div>
         </div>
-
-        <div class="row my-3 border-bottom border-primary" id="QUESTION-TEMPLATE">
-            <div class="col-12">
-                <div class="row" id="buttons-and-question">
-                    <div class="col-1 ml-1" id="questionVoteButtons">
-                        <div class="row">
-                            <div class="col">
-                                <h3><i class="text-success fas fa-chevron-up pointer"
-                                        onclick="app.questionsController.upvote()"></i> <span class="text-success"
-                                        id="questionUpvotes">0</span></h3>
+        <div id="questions">
+            <div class="row my-3 border-bottom border-primary" id="QUESTION-TEMPLATE">
+                <div class="col-12">
+                    <div class="row" id="buttons-and-question">
+                        <div class="col-1 ml-1" id="questionVoteButtons">
+                            <div class="row">
+                                <div class="col">
+                                    <h3><i class="text-success fas fa-chevron-up pointer"
+                                            onclick="app.questionsController.upVote()"></i> <span class="text-success"
+                                            id="questionUpvotes">${this.upvotes}</span></h3>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <h3><i class="text-danger fas fa-chevron-down pointer"
+                                            onclick="app.questionsController.downVote()"></i> <span class="text-danger"
+                                            id="questionDownvotes">${this.downvotes}</span></h3>
+                                </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col">
-                                <h3><i class="text-danger fas fa-chevron-down pointer"
-                                        onclick="app.questionsController.downvote()"></i> <span class="text-danger"
-                                        id="questionDownvotes">0</span></h3>
+                        <div class="col m-auto mr-1" id="questionBody">
+                            <div class="row">
+                                <div class="col-5">
+                                    <p>Asked by: <span id="askedBy">${this.user}</span></p>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-12">
+                                    <h4 id="questionText">${this.question}</h4>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col m-auto mr-1" id="questionBody">
-                        <div class="row">
-                            <div class="col-5">
-                                <p>Asked by: <span id="askedBy">USER</span></p>
-                            </div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-12">
-                                <h4 id="questionText">QUESTION TEXT QUESTION TEXT</h4>
-                            </div>
+                    <div class="row mb-3">
+                        <div class="offset-1 col-10">
+                            <button class="btn btn-outline-info" onclick="app.commentsController.toggleForm()">Answer</button>
+                            <span class="ml-3 pointer" onclick="app.commentsController.showAnswers()"><u>Show
+                                    Answers</u></span>
                         </div>
                     </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="offset-1 col-10">
-                        <button class="btn btn-outline-info" onclick="app.answersController.answer()">Answer</button>
-                        <span class="ml-3 pointer" onclick="app.answersController.showAnswers()"><u>Show
-                                Answers</u></span>
-                    </div>
-                </div>
-                <div class="row mb-3" id="ANSWER-TEMPLATE">
-                    <div class="offset-1 col-10">
-                        <div class="row">
-                            <div class="col-1 ml-1" id="answerVoteButtons">
-                                <div class="row">
-                                    <div class="col">
-                                        <h5><i class="text-success fas fa-chevron-up pointer"
-                                                onclick="app.answersController.upvote()"></i> <span class="text-success"
-                                                id="answerUpvotes">0</span></h5>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col">
-                                        <h5><i class="text-danger fas fa-chevron-down pointer"
-                                                onclick="app.answersController.downvote()"></i> <span
-                                                class="text-danger" id="answerDownvotes">0</span></h5>
-                                    </div>
-                                </div>
+                    <div class="row mb-3 hidden" id="formForAnswer">
+                        <form onsubmit="app.commentsController.addComment(event)">
+                            <h4>Answer this Question:</h4>
+                            <div class="form-group">
+                                <label for="user">Your Name:</label>
+                                <input class="form-control" id="user" placeholder="Name"></input>
                             </div>
-                            <div class="col" id="answer">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <small>Answered by: <span id="answeredBy">USER2</span></small>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <h5 id="answerText">ANSWER TEXT ANSWER TEXT</h5>
-                                    </div>
-                                </div>
+                            <div class="form-group">
+                                <label for="question">Question:</label>
+                                <input class="form-control" id="question" placeholder="Ask A Question!"></input>
                             </div>
-                        </div>
+                            <button class="btn btn-outline-warning" type="submit">Answer</button>
+                        </form>
+                    <div class="row mb-3" id="ANSWER-TEMPLATE">
+                            
                     </div>
                 </div>
             </div>

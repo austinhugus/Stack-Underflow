@@ -8,6 +8,10 @@ main {
     flex-grow: 1;
 }
 
+.hidden{
+    display: none;
+}
+
 .pointer{
     cursor: pointer;
 }
