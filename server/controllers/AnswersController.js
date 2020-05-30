@@ -5,7 +5,7 @@ import { answersService } from "../services/AnswersService";
 
 export class AnswersController extends BaseController {
   constructor() {
-    super("api/answers");
+    super("api/comments");
     this.router
       .get("", this.getAll)
       .get("/:id", this.getById)

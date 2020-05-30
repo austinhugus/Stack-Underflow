@@ -2,8 +2,9 @@ import store from "../store.js";
 import Question from "../Models/Question.js";
 
 
+// @ts-ignore
 const _mainApi = axios.create({
-    baseURL: "localhost:3000/api/questions",
+    baseURL: "//localhost:3000/api/",
     timeout: 3000
 })
 
@@ -37,10 +38,12 @@ class QuestionsService {
 
     upVote(id) {
         let question = store.State.questions.find(q => q.id == id)
+            ;
 
-        let update = question.upvotes += 1
 
-        _mainApi.put(question, update)
+        question.upvotes += 1
+        // console.log(update)
+        _mainApi.put("questions/" + id, question)
             .then(res => {
                 this.getQuestions()
             })
@@ -50,9 +53,9 @@ class QuestionsService {
     downVote(id) {
         let question = store.State.questions.find(q => q.id == id)
 
-        let update = question.downvotes -= 1
+        question.downvotes -= 1
 
-        _mainApi.put(question, update)
+        _mainApi.put("questions/" + id, question)
             .then(res => {
                 this.getQuestions()
             })

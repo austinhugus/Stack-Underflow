@@ -31,12 +31,12 @@ export default class Comment {
             <div class="col" id="answer">
                 <div class="row">
                     <div class="col-12">
-                        <small>Answered by: <span id="answeredBy">USER2</span></small>
+                        <small>Answered by: <span id="answeredBy">${this.user}</span></small>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12">
-                        <h5 id="answerText">ANSWER TEXT ANSWER TEXT</h5>
+                        <h5 id="answerText">${this.body}</h5>
                     </div>
                 </div>
             </div>

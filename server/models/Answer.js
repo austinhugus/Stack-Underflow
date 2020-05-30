@@ -6,13 +6,13 @@ const Answer = new Schema(
   {
     user: { type: String, required: true },
 
-    body: { type: String, required: true },
-
     questionId: { type: ObjectId, ref: "Question", required: true },
 
-    upvotes: { type: Number, required: true },
+    upvotes: { type: Number, default: 0 },
 
-    downvotes: { type: Number, required: true },
+    downvotes: { type: Number, default: 0 },
+
+    body: { type: String, required: true }
 
   },
   { timestamps: true, toJSON: { virtuals: true } }

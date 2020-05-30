@@ -7,7 +7,7 @@ class AnswersService {
   }
 
   async findById(id) {
-    let data = await (await dbContext.Answers.findById(id)).populate("questionId")
+    let data = await dbContext.Answers.findById(id).populate("questionId")
     if (!data) {
       throw new BadRequest("Invalid Id")
     }
@@ -15,8 +15,10 @@ class AnswersService {
   }
 
   async create(answer) {
-    let question = await dbContext.Questions.findById(answer.questionId)
-    // await question.save
+
+    // let answers = await dbContext.Questions.findById(answer.questionId).populate("answers")
+    // // await question.save
+    // let comments = {body:answers.body, questionId, user}
     return await dbContext.Answers.create(answer)
   }
 

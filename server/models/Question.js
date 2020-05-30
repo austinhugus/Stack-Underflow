@@ -8,9 +8,9 @@ const Question = new Schema(
 
     question: { type: String, required: true },
 
-    upvotes: { type: Number, required: true },
+    upvotes: { type: Number, default: 0 },
 
-    downvotes: { type: Number, required: true },
+    downvotes: { type: Number, default: 0 },
 
     answers: [{ type: ObjectId }]
 

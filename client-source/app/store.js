@@ -11,7 +11,7 @@ let _state = {
   questions: [],
   /** @type {Comment[]} */
 
-  comments: [],
+  comments: null,
 };
 
 /** Collection of listeners to be called based on keyed state changes
