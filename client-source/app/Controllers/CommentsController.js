@@ -20,15 +20,16 @@ export default class CommentsController {
     }
 
     toggleForm() {
-        document.getElementById("formForAnswer").classList.toggle("hidden")
+        document.getElementById("formForComment").classList.toggle("hidden")
     }
-    toggleAnswers() {
-        document.getElementById("answers").classList.toggle("hidden")
+    
+    toggleComments() {
+        document.getElementById("comments").classList.toggle("hidden")
     }
 
     addComment(event, id) {
         event.preventDefault();
-        document.getElementById("formForAnswer").classList.toggle("hidden")
+        document.getElementById("formForComment").classList.toggle("hidden")
 
         let formData = event.target
         let newComment = {
@@ -42,8 +43,10 @@ export default class CommentsController {
         formData.reset()
     }
 
-
+    removeComment(questionId){
+        if(window.confirm("Are you sure you want to delete this Comment?")){
+        commentsService.removeComment(questionId)
+    }
 }
 
-
-
+}

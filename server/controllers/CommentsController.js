@@ -1,9 +1,9 @@
 import express from "express";
 import BaseController from "../utils/BaseController";
 import { questionsService } from "../services/QuestionsService";
-import { answersService } from "../services/AnswersService";
+import { commentsService } from "../services/CommentsService";
 
-export class AnswersController extends BaseController {
+export class CommentsController extends BaseController {
   constructor() {
     super("api/comments");
     this.router
@@ -16,7 +16,7 @@ export class AnswersController extends BaseController {
   }
   async getAll(req, res, next) {
     try {
-      let data = await answersService.find(req.query)
+      let data = await commentsService.find(req.query)
       return res.send(data)
     } catch (error) {
       next(error);
@@ -24,7 +24,7 @@ export class AnswersController extends BaseController {
   }
   async getById(req, res, next) {
     try {
-      let data = await answersService.findById(req.params.id)
+      let data = await commentsService.findById(req.params.id)
       return res.send(data)
     } catch (error) {
       next(error);
@@ -32,7 +32,7 @@ export class AnswersController extends BaseController {
   }
   async create(req, res, next) {
     try {
-      let data = await answersService.create(req.body)
+      let data = await commentsService.create(req.body)
       return res.send(data)
     } catch (error) {
       next(error);
@@ -42,7 +42,7 @@ export class AnswersController extends BaseController {
   async edit(req, res, next) {
     try {
       req.body.id = req.params.id
-      let data = await answersService.edit(req.body)
+      let data = await commentsService.edit(req.body)
       return res.send(data)
     } catch (error) {
       next(error)
@@ -51,7 +51,7 @@ export class AnswersController extends BaseController {
 
   async delete(req, res, next) {
     try {
-      await answersService.delete(req.params.id)
+      await commentsService.delete(req.params.id)
       return res.send("Deleted")
     } catch (error) {
       next(error)

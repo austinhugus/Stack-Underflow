@@ -12,7 +12,7 @@ const Question = new Schema(
 
     downvotes: { type: Number, default: 0 },
 
-    answers: [{ type: ObjectId }]
+    comments: [{ type: ObjectId }]
 
   },
   { timestamps: true, toJSON: { virtuals: true } }

@@ -7,7 +7,7 @@ class QuestionsService {
   }
 
   async findById(id) {
-    let data = await dbContext.Questions.findById(id).populate("answers")
+    let data = await dbContext.Questions.findById(id).populate("comments")
     if (!data) {
       throw new BadRequest("Invalid Id")
     }

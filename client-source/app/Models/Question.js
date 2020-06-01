@@ -5,15 +5,15 @@ export default class Question {
         this.user = data.user
         this.upvotes = data.upvotes || 0
         this.downvotes = data.downvotes || 0
-        this.answers = []
+        this.comments = []
         this.id = data._id || data.id
-
+        this.count = this.upvotes + this.downvotes
     }
 
     get Template() {
         return /*html*/`
 
-        <div class="row my-3 border-bottom border-primary" id="QUESTION-TEMPLATE">
+        <div class="row my-3 border-bottom border-primary" id="${this.count}">
             <div class="col-12">
                 <div class="row" id="buttons-and-question">
                     <div class="col-1 ml-1" id="questionVoteButtons">
@@ -40,19 +40,21 @@ export default class Question {
                         </div>
                         <div class="row mb-2">
                             <div class="col-12">
-                                <h4 id="questionText">${this.question}</h4>
+                               <h4 id="questionText">${this.question} <i onclick="app.questionsController.removeQuestion('${this.id}')" id="delete" class="fa fa-times text-danger pl-1"></i></h4>
+                                
                             </div>
                         </div>
                     </div>
                 </div>
+ 
                 <div class="row mb-3">
                     <div class="offset-1 col-10">
                         <button class="btn btn-outline-info" onclick="app.commentsController.toggleForm('${this.id}')">Answer</button>
-                        <span class="ml-3 pointer" onclick="app.commentsController.toggleAnswers('${this.id}')"><u>Show
+                        <span class="ml-3 pointer" onclick="app.commentsController.toggleComments('${this.id}')"><u>Show
                                 Answers</u></span>
                     </div>
                 </div>
-                <div class="row mb-3 hidden" id="formForAnswer">
+                <div class="row mb-3 hidden" id="formForComment">
                     <form onsubmit="app.commentsController.addComment(event, '${this.id}')">
                         <h4>Answer this Question:</h4>
                         <div class="form-group">

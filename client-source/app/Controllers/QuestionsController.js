@@ -32,6 +32,7 @@ export default class QuestionsController {
         formData.reset()
     }
 
+
     upVote(id) {
         questionsService.upVote(id)
     }
@@ -40,6 +41,15 @@ export default class QuestionsController {
         questionsService.downVote(id)
     }
 
+    removeQuestion(id){
+        if(window.confirm("Are you sure you want to delete this question?")){
+        questionsService.removeQuestion(id)
+    }
+    }
+    sortByCount() {
+        questionsService.sortByCount()
+    }
+    
 
 
 }

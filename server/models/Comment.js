@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 const ObjectId = mongoose.Types.ObjectId
 
-const Answer = new Schema(
+const Comment = new Schema(
   {
     user: { type: String, required: true },
 
@@ -12,10 +12,13 @@ const Answer = new Schema(
 
     downvotes: { type: Number, default: 0 },
 
-    body: { type: String, required: true }
+    body: { type: String, required: true },
+
+    // commentId: { type: ObjectId, ref: "Comment", required: true }
 
   },
+  
   { timestamps: true, toJSON: { virtuals: true } }
 );
 
-export default Answer;
+export default Comment;

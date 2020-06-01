@@ -62,6 +62,19 @@ class QuestionsService {
             .catch(err => console.error(err))
     }
 
+    removeQuestion(id){
+            _mainApi.delete("questions/" + id, id)
+            .then(res =>{
+                this.getQuestions()
+            })
+            .catch(err => console.error(err))
+            }
+        
+    
+
+    sortByCount(){
+        
+    }
 
 
 }

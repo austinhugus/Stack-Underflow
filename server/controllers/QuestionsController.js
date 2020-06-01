@@ -1,7 +1,7 @@
 import express from "express";
 import BaseController from "../utils/BaseController";
 import { questionsService } from "../services/QuestionsService";
-import { answersService } from "../services/AnswersService";
+import { commentsService } from "../services/CommentsService";
 
 export class QuestionsController extends BaseController {
   constructor() {
@@ -9,7 +9,7 @@ export class QuestionsController extends BaseController {
     this.router
       .get("", this.getAll)
       .get("/:id", this.getById)
-      .get("/:id/answers", this.getAnswersByQuestionId)
+      .get("/:id/comments", this.getCommentsByQuestionId)
       .post("", this.create)
       .put("/:id", this.edit)
       .delete("/:id", this.delete)
@@ -32,9 +32,9 @@ export class QuestionsController extends BaseController {
     }
   }
 
-  async getAnswersByQuestionId(req, res, next) {
+  async getCommentsByQuestionId(req, res, next) {
     try {
-      let data = await answersService.find({ questionId: req.params.id })
+      let data = await commentsService.find({ questionId: req.params.id })
       return res.send(data)
     } catch (error) {
       next(error)

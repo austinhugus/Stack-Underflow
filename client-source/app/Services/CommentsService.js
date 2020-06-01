@@ -33,8 +33,23 @@ class CommentsService {
             .catch(err => console.error(err))
     }
 
+    removeComment(questionId){
+        _mainApi.delete("comments/" + questionId)
+        .then(res =>{
+            this.getComments()
+        })
+        .catch(err => console.error(err))
+        }
 
-
+    // async removeComment(commentId) {
+    //     try {
+    //       let comment = store.State.comments.find(c => c.id == commentId);
+    //       await _mainApi.delete(commentId);
+    //       this.getComments()
+    //     } catch (error) {
+    //       console.error(error);
+    //     }
+    //   }
 }
 
 const commentsService = new CommentsService();
